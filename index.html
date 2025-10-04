@@ -3,21 +3,85 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SpeedScript Typing Test</title>
+<title>SpeedScript Typing Test Ultimate</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="container">
-    <h1>SpeedScript Typing Test</h1>
+    <h1>SpeedScript Typing Test Ultimate</h1>
+
+    <div class="top-bar">
+        <input id="user-name" type="text" placeholder="Your Name" maxlength="10">
+        <div class="timer-selection">
+            <label>Time: </label>
+            <select id="time-select">
+                <option value="15">15s</option>
+                <option value="30">30s</option>
+                <option value="60" selected>60s</option>
+                <option value="120">120s</option>
+            </select>
+        </div>
+        <div class="difficulty-selection">
+            <label>Difficulty: </label>
+            <select id="difficulty-select">
+                <option value="easy" selected>Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        </div>
+        <button id="theme-toggle">Switch Theme</button>
+    </div>
+
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
     <div id="text-display"></div>
     <textarea id="input" placeholder="Start typing..." autofocus></textarea>
+
     <div class="stats">
         <p>Time: <span id="time">60</span>s</p>
         <p>WPM: <span id="wpm">0</span></p>
         <p>Accuracy: <span id="accuracy">0</span>%</p>
+        <p>CPM: <span id="cpm">0</span></p>
+        <p>Mistakes: <span id="mistakes">0</span></p>
     </div>
+
     <button id="restart">Restart</button>
+
+    <div class="leaderboard">
+        <h3>Global Leaderboard (Top 5)</h3>
+        <ol id="leaderboard-list"></ol>
+    </div>
 </div>
+
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <h2>Time's Up!</h2>
+        <p>WPM: <span id="final-wpm"></span></p>
+        <p>Accuracy: <span id="final-accuracy"></span>%</p>
+        <p>CPM: <span id="final-cpm"></span></p>
+        <p>Mistakes: <span id="final-mistakes"></span></p>
+        <button id="close-popup">Close</button>
+    </div>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "SENDER_ID",
+  appId: "APP_ID"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+</script>
+
 <script src="script.js"></script>
 </body>
 </html>
